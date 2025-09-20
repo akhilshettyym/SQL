@@ -1,4 +1,5 @@
 # SQL SELECT Statement
+
 The SQL SELECT Statement.
 The SELECT statement is used to select data from a database.
 

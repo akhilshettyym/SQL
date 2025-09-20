@@ -1,4 +1,5 @@
 ## SQL AND Operator
+
 The SQL AND Operator
 The WHERE clause can contain one or many AND operators.
 

@@ -1,4 +1,5 @@
 # SQL Aggregate Functions
+
 An aggregate function is a function that performs a calculation on a set of values, and returns a single value.
 
 Aggregate functions are often used with the GROUP BY clause of the SELECT statement. The GROUP BY clause splits the result-set into groups of values and the aggregate function can be used to return a single value for each group.

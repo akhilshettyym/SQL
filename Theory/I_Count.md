@@ -39,3 +39,13 @@ Find the number of products where Price is higher than 20:
 SELECT COUNT(ProductID)
 FROM Products
 WHERE Price > 20;
+
+
+Ignore Duplicates
+You can ignore duplicates by using the DISTINCT keyword in the COUNT() function.
+If DISTINCT is specified, rows with the same value for the specified column will be counted as one.
+Example - 
+How many different prices are there in the Products table:
+
+SELECT COUNT(DISTINCT Price)
+FROM Products;

@@ -49,3 +49,12 @@ How many different prices are there in the Products table:
 
 SELECT COUNT(DISTINCT Price)
 FROM Products;
+
+
+Use an Alias :
+Give the counted column a name by using the AS keyword.
+Example - 
+Name the column "Number of records":
+SELECT COUNT(*) AS [Number of records]
+FROM Products;
+

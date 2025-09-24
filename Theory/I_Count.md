@@ -58,3 +58,8 @@ Name the column "Number of records":
 SELECT COUNT(*) AS [Number of records]
 FROM Products;
 
+Use COUNT() with GROUP BY :
+Here we use the COUNT() function and the GROUP BY clause, to return the number of records for each category in the Products table:
+SELECT COUNT(*) AS [Number of records], CategoryID
+FROM Products
+GROUP BY CategoryID;

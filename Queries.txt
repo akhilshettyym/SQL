@@ -1,0 +1,113 @@
+- Creation of a database :
+## CREATE DATABASE AKHQL;
+---------------------------------------------------------------------------
+- Use this command to Set as Default Schema : 
+## USE AKHQL;
+---------------------------------------------------------------------------
+- Creation of a table :
+CREATE TABLE USERS (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    NAME VARCHAR(100) NOT NULL,
+    EMAIL VARCHAR(100) NOT NULL,
+    GENDER ENUM('MALE', 'FEMALE', 'OTHER'),
+    DATE_OF_BIRTH DATE,
+    CREATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+---------------------------------------------------------------------------
+- Viewing the created table :
+## SELECT * FROM USERS;
+---------------------------------------------------------------------------
+- Dropping the database : (Deleting)
+## DROP DATABASE AKHQL;
+---------------------------------------------------------------------------
+- Writing and Saving our SQL Script :
+### Save the written script as code
+CREATE DATABASE AKHQL;
+USE AKHQL;
+CREATE TABLE USERS (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    NAME VARCHAR(100) NOT NULL,
+    EMAIL VARCHAR(100) NOT NULL,
+    GENDER ENUM('MALE', 'FEMALE', 'OTHER'),
+    DATE_OF_BIRTH DATE,
+    CREATED_AT TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+SELECT * FROM USERS;
+------------------------------------------------------------------------------
+- Selecting from the database:
+SELECT EMAIL, GENDER FROM USERS;
+------------------------------------------------------------------------------
+- Renaming a Table :
+RENAME TABLE USERS TO CUSTOMERS;
+RENAME TABLE CUSTOMERS TO USERS;
+------------------------------------------------------------------------------
+- Altering a Table :
+ALTER TABLE USERS ADD COLUMN IS_ACTIVE BOOLEAN DEFAULT TRUE;
+------------------------------------------------------------------------------
+- Drop a Column :
+ALTER TABLE USERS DROP COLUMN IS_ACTIVE;
+------------------------------------------------------------------------------
+- Modify a Column Type :
+ALTER TABLE USERS MODIFY COLUMN NAME VARCHAR(150);
+------------------------------------------------------------------------------
+- Move a Column to the First Position :
+ALTER TABLE USERS MODIFY COLUMN EMAIL VARCHAR(100) FIRST;
+ALTER TABLE USERS MODIFY COLUMN EMAIL VARCHAR(100) AFTER ID;
+ALTER TABLE USERS MODIFY COLUMN DATE_OF_BIRTH DATE FIRST;
+------------------------------------------------------------------------------
+- Inserting into a table :
+INSERT INTO USERS VALUES 
+(1, 'AKHIL', 'akhilshettym@gmail.com', 'MALE', '2003-03-29', DEFAULT),
+(2, 'DANGAI', 'dangai@gmail.com', 'MALE', '1990-03-24', DEFAULT),
+(3, 'ZANGETSU', 'zangetsu@gmail.com', 'MALE', '2000-02-12', DEFAULT),
+(4, 'MUGETSU', 'mugetsu@gmail.com', 'MALE', '1963-012-25', DEFAULT);
+
+INSERT INTO USERS (NAME, EMAIL, GENDER, DATE_OF_BIRTH) VALUES
+('AKHIL', 'shettyakhil@gmail.com', 'MALE', '2003-03-29');
+------------------------------------------------------------------------------
+SELECT * FROM USERS WHERE GENDER='FEMALE';
+SELECT * FROM USERS WHERE GENDER<>'FEMALE';
+SELECT * FROM USERS WHERE GENDER!='FEMALE';
+SELECT * FROM USERS WHERE ID>10;
+SELECT * FROM USERS WHERE DATE_OF_BIRTH IS NOT NULL;
+SELECT * FROM USERS WHERE DATE_OF_BIRTH BETWEEN '1990-09-09' and '1999-09-09';
+
+SELECT * FROM USERS WHERE GENDER IN ('MALE', 'FEMALE');
+
+SELECT * FROM USERS WHERE GENDER='FEMALE' AND SALARY>'70000';
+
+SELECT * FROM USERS WHERE GENDER='MALE' OR SALARY>'65000';
+
+SELECT * FROM USERS WHERE GENDER='MALE' OR SALARY>'65000' ORDER BY DATE_OF_BIRTH ASC; -- Ascending order
+SELECT * FROM USERS WHERE GENDER='MALE' OR SALARY>'65000' ORDER BY DATE_OF_BIRTH DESC; -- Descending order
+
+SELECT * FROM USERS WHERE GENDER='MALE' OR SALARY>'65000' ORDER BY DATE_OF_BIRTH DESC LIMIT 5; -- Limits upto 5 rows.
+------------------------------------------------------------------------------
+- Updating the data :
+UPDATE USERS SET SALARY=45000 WHERE ID=1;
+UPDATE USERS SET SALARY=45000, EMAIL='tensa@gmail.com' WHERE ID=1;
+UPDATE USERS SET NAME='Aisha Khan' WHERE EMAIL='aisha@example.com';
+UPADTE USERS SET SALARY=SALARY+10000 WHERE SALARY<60000;
+------------------------------------------------------------------------------
+- Deleting Data :
+DELETE FROM USERS WHERE SALARY<65000;
+
+- Dropping Table :
+DROP TABLE USERS;
+------------------------------------------------------------------------------
+- Functions :
+SELECT COUNT(*) FROM USERS;
+SELECT COUNT(*) FROM USERS WHERE GENDER='MALE';
+
+SELECT MIN(SALARY) AS MIN(SALARY), MAX(SALARY) AS MAX(SALARY) FROM USERS;
+------------------------------------------------------------------------------
+SELECT SUM(SALARY) AS TOTAL FROM USERS;
+SELECT AVG(SALARY) AS AVERAGE FROM USERS;
+
+SELECT GENDER, AVG(SALARY) AS AVERAGE FROM USERS GROUP BY GENDER;
+
+SELECT ID, GENDER, NAME, LENGTH(NAME) AS NAME_LEN FROM USERS;
+
+SELECT ID, GENDER, LOWER(NAME) AS LOWER, CONCAT(LOWER(NAME), "123456") AS USERNAME, LENGTH(NAME) AS NAME_LEN FROM USERS;
+
+SELECT NAME, DATEDIFF(CURDATE(), DATE_OF_BIRTH) AS DAYS FROM USERS;

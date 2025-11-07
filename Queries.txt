@@ -157,3 +157,23 @@ UNION
 SELECT NAME FROM ADMIN_USERS;
 ------------------------------------------------------------------------------
 - SELF JOIN :
+SELECT 
+A.ID,
+A.NAME AS USER_NAME
+B.NAME AS REFERRED_BY_NAME
+FROM USERS A
+INNER JOIN USERS B ON A.REFERRED_BY_ID = B.ID;
+------------------------------------------------------------------------------
+- VIEW :
+CREATE VIEW RICH_USERS AS 
+SELECT USERS WHERE SALARY > 70000;
+------------------------------------------------------------------------------
+DROP VIEW RICH_USERS;
+
+SHOW INDEXES FROM USERS;
+
+CREATE INDEX IDX_GENDER_SALARY ON USERS(GENDER, SALARY);
+
+
+- SubQueries
+SELECT * FROM USERS WHERE SALARY > (SELECT AVG(SALARY) FROM USERS);

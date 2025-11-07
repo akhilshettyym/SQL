@@ -111,3 +111,49 @@ SELECT ID, GENDER, NAME, LENGTH(NAME) AS NAME_LEN FROM USERS;
 SELECT ID, GENDER, LOWER(NAME) AS LOWER, CONCAT(LOWER(NAME), "123456") AS USERNAME, LENGTH(NAME) AS NAME_LEN FROM USERS;
 
 SELECT NAME, DATEDIFF(CURDATE(), DATE_OF_BIRTH) AS DAYS FROM USERS;
+
+------------------------------------------------------------------------------
+- Commits :
+
+SET AUTOCOMMIT = 0;
+SELECT * FROM USERS;
+COMMIT;
+
+
+Use autocommit to toggle to turn on and then comment it as it stays turned on, until you turn it OFF.
+SET AUTOCOMMIT = 0;
+SET AUTOCOMMIT = 1;
+SELECT * FROM USERS;
+DELETE FROM USERS WHERE ID=6;
+(Once deleted if there's a scenario to undo the changes then) use ROLLBACK;
+
+ROLLBACK;           -- By this we revert the changes.
+------------------------------------------------------------------------------
+
+- Primary key and Foreign Key :
+DROP TABLE IF EXISTS ADDRESSES;
+
+CREATE TABLE ADDRESSES (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    USER_ID INT,
+    STREET VARCHAR(255),
+    CITY VARCHAR(100),
+    STATE VARCHAR(100),
+    PINCODE VARCHAR(10),
+    CONSTRAINT FK_USER FOREIGN KEY (USER_ID) REFERENCES USERS(ID) ON DELETE CASCADE
+);
+
+INSERT INTO ADDRESSES (USER_ID, STREET, CITY, STATE, PINCODE) VALUES
+(1, '221B MG ROAD', 'MUMBAI', 'MAHARASHTRA', '400001'),
+------------------------------------------------------------------------------
+- JOINS :
+- Operates on all INNER, LEFT and RIGHT
+Inner Join - SELECT USERS.NAME, USERS.GENDER, ADDRESSES.CITY, ADDRESSES.STATE, ADDRESSES.ID AS ADDRESSES_ID
+FORM USERS JOIN ADDRESSES ON USERS.ID = ADDRESSES.USER_ID;
+------------------------------------------------------------------------------
+- UNION and UNION_ALL
+SELECT NAME FROM USERS 
+UNION 
+SELECT NAME FROM ADMIN_USERS;
+------------------------------------------------------------------------------
+- SELF JOIN :
